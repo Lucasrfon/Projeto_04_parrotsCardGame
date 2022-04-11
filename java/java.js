@@ -44,6 +44,7 @@ function desvirarCarta() {
     document.querySelectorAll(".semPar")[0].querySelector(".vira").classList.remove("vira")
     document.querySelectorAll(".semPar")[0].querySelector(".frente").classList.remove("frente")
     document.querySelectorAll(".semPar")[0].classList.remove("semPar")
+    document.querySelector(".espera").classList.remove("espera")
 }
 function repetirJogo() {
     listaCartas.innerHTML = "";
@@ -134,6 +135,7 @@ function jogada(elemento) {
            }
         }
         else {
+            document.querySelector("div").classList.add("espera")
             setTimeout(desvirarCarta, 1000);
             virada1 = false
             virada2 = false

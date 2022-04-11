@@ -72,6 +72,15 @@ h2 {
     height: 100px;
     width: 100px;
 }
+.espera {
+    height: 1000px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
 @media (max-width: 414px) {
     ul {
         flex-direction: column;
