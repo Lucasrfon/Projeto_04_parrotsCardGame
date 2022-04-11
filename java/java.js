@@ -42,22 +42,29 @@ function desvirarCarta() {
     document.querySelectorAll(".semPar")[0].querySelector(".frente").classList.remove("frente")
     document.querySelectorAll(".semPar")[0].classList.remove("semPar")
 }
-
-//Recebendo a quantidade de cartas
-checar();
-while (condicaoOk !== true) {   
-    alert ("Número inválido, escolha um número par entre 4 e 14");
-    checar();
+function repetirJogo() {
+    listaCartas.innerHTML = "";
+    cartasViradas = 0
+    totalJogadas = 0
+    cartasEmJogo = []
+    preparando()
 }
+function preparando() {
+//Recebendo a quantidade de cartas
+    checar();
+    while (condicaoOk !== true) {   
+        alert ("Número inválido, escolha um número par entre 4 e 14");
+        checar();
+    }
 
 //Armar o jogo
-for(let i = 0; i < quantidadeCartas; i ++) {
-    cartasEmJogo.push(cartas[i])
-}
+    for(let i = 0; i < quantidadeCartas; i ++) {
+        cartasEmJogo.push(cartas[i])
+    }
 
-cartasEmJogo.sort(comparador)
+    cartasEmJogo.sort(comparador)
 
-for(let i = 0; i < quantidadeCartas; i ++) {
+    for(let i = 0; i < quantidadeCartas; i ++) {
     listaCartas.innerHTML += `
     <div class="carta ${cartasEmJogo[i].slice(0,3)}" onclick="jogada(this)">
         <div class="estiloCarta">
@@ -67,8 +74,10 @@ for(let i = 0; i < quantidadeCartas; i ++) {
             <img src="/imagens/${cartasEmJogo[i]}" />
         </div>
     </div>`
+    }
 }
 
+preparando()
 //Jogando
 function jogada(elemento) {
     if (virada1 === false) {
@@ -95,17 +104,14 @@ function jogada(elemento) {
                 jogarNovamente = prompt("Gostaria de jogar novamente?")
                }
                if (jogarNovamente == "sim") {
-                   checar()
+                   repetirJogo()
                } else {
                    alert ("Obrigado por jogar! Esperamos te ver novamente em breve!")
                }
            }
         }
         else {
-            console.log(document.querySelectorAll(".semPar"));
-            setTimeout(desvirarCarta(), 10000);
-            
-            
+            setTimeout(desvirarCarta, 1000);
             virada1 = false
             virada2 = false
         }
