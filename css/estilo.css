@@ -82,7 +82,7 @@ h2 {
     opacity: 0;
 }
 @media (max-width: 414px) {
-    ul {
+    .cartas {
         flex-direction: column;
     }
     h1 {
