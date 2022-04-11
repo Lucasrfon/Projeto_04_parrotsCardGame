@@ -27,19 +27,20 @@ function comparador() {
 	return Math.random() - 0.5; 
 }
 function virarCarta(elemento) {
+    elemento.classList.add("semPar")
     elemento.querySelector(".estiloCarta").classList.add("frente")
     elemento.querySelector(".verso").classList.add("vira")
     elemento.querySelector(".verso").classList.remove("verso")
 }
-function desvirarCarta1() {
-    document.querySelector(virada1[1]).querySelector(".vira").classList.add("verso")
-    document.querySelector(virada1[1]).querySelector(".vira").classList.remove("vira")
-    document.querySelector(virada1[1]).querySelector(".frente").classList.remove("frente")
-}
-function desvirarCarta2() {
-    document.querySelector(virada2[1]).querySelector(".vira").classList.add("verso")
-    document.querySelector(virada2[1]).querySelector(".vira").classList.remove("vira")
-    document.querySelector(virada2[1]).querySelector(".frente").classList.remove("frente")
+function desvirarCarta() {
+    document.querySelectorAll(".semPar")[1].querySelector(".vira").classList.add("verso")
+    document.querySelectorAll(".semPar")[1].querySelector(".vira").classList.remove("vira")
+    document.querySelectorAll(".semPar")[1].querySelector(".frente").classList.remove("frente")
+    document.querySelectorAll(".semPar")[1].classList.remove("semPar")
+    document.querySelectorAll(".semPar")[0].querySelector(".vira").classList.add("verso")
+    document.querySelectorAll(".semPar")[0].querySelector(".vira").classList.remove("vira")
+    document.querySelectorAll(".semPar")[0].querySelector(".frente").classList.remove("frente")
+    document.querySelectorAll(".semPar")[0].classList.remove("semPar")
 }
 
 //Recebendo a quantidade de cartas
@@ -58,7 +59,7 @@ cartasEmJogo.sort(comparador)
 
 for(let i = 0; i < quantidadeCartas; i ++) {
     listaCartas.innerHTML += `
-    <div class="carta ${cartasEmJogo[i].slice(0, 3)}" onclick="jogada(this)">
+    <div class="carta ${cartasEmJogo[i].slice(0,3)}" onclick="jogada(this)">
         <div class="estiloCarta">
             <img src="/imagens/front.png" />
         </div>
@@ -74,16 +75,16 @@ function jogada(elemento) {
         virada1 = elemento.classList
         totalJogadas ++
         virarCarta(elemento)
-        console.log(elemento)
     }
     else {
         virada2 = elemento.classList
         totalJogadas ++
         virarCarta(elemento)
-        console.log(elemento)
         if (virada1[1] == virada2[1]) {
+            console.log(document.querySelectorAll(".semPar"))
+            document.querySelectorAll(".semPar")[1].classList.remove("semPar")
+            document.querySelectorAll(".semPar")[0].classList.remove("semPar")
            cartasViradas += 2;
-           console.log(cartasViradas)
            virada1 = false
            virada2 = false
            if (cartasViradas == quantidadeCartas) {
@@ -101,7 +102,12 @@ function jogada(elemento) {
            }
         }
         else {
-            setTimeout(desvirarCarta1(), 1000)
+            console.log(document.querySelectorAll(".semPar"));
+            setTimeout(desvirarCarta(), 10000);
+            
+            
+            virada1 = false
+            virada2 = false
         }
     }
 }
