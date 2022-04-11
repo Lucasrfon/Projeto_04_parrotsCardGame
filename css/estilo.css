@@ -10,6 +10,21 @@ h1 {
     font-size: 56px;
     font-weight: 700;
     margin: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+h2 {
+    color: #eef9bf;
+    font-size: 40px;
+    font-weight: 500;
+    background-color: #75B79E;
+    height: 50px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
 }
 .container {
     width: 100%;
@@ -21,6 +36,7 @@ h1 {
 }
 .cartas {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 }
 .carta {

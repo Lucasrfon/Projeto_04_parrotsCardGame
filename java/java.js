@@ -9,6 +9,9 @@ let virada2 = false;
 let cartasViradas = 0;
 let jogarNovamente;
 let totalJogadas = 0;
+let contadormin = 0;
+let contadorseg = 0;
+let partida;
 
 //Arrays
 let cartas = ["bobrossparrot.gif", "bobrossparrot.gif", "explodyparrot.gif", "explodyparrot.gif", "fiestaparrot.gif", "fiestaparrot.gif", "metalparrot.gif", "metalparrot.gif", "revertitparrot.gif", "revertitparrot.gif", "tripletsparrot.gif", "tripletsparrot.gif", "unicornparrot.gif", "unicornparrot.gif"];
@@ -47,6 +50,8 @@ function repetirJogo() {
     cartasViradas = 0
     totalJogadas = 0
     cartasEmJogo = []
+    contadormin = 0
+    contadorseg = 0
     preparando()
 }
 function preparando() {
@@ -75,6 +80,23 @@ function preparando() {
         </div>
     </div>`
     }
+    contar()
+}
+function contar() {
+    partida = setInterval(aumentar, 1000);
+}
+function aumentar () {
+    contadorseg ++;
+    if(contadorseg > 59) {
+        contadormin ++
+        contadorseg = (contadorseg % 60)
+    }
+    if(contadorseg > 9){
+        document.querySelector("h2").innerHTML = `0${contadormin}:${contadorseg}`
+    }
+    else {
+        document.querySelector("h2").innerHTML = `0${contadormin}:0${contadorseg}`
+    }
 }
 
 preparando()
@@ -97,7 +119,8 @@ function jogada(elemento) {
            virada1 = false
            virada2 = false
            if (cartasViradas == quantidadeCartas) {
-               alert(`Parabéns! Você ganho em ${totalJogadas} jogadas!`)
+               clearInterval(partida);
+               alert(`Parabéns! Você ganhou em ${totalJogadas} jogadas e levou ${contadormin} minutos e ${contadorseg} segundos!`)
                jogarNovamente = prompt("Gostaria de jogar novamente?")
                while (jogarNovamente != "sim" && jogarNovamente != "não") {
                 alert("Resposta inválida. Favor digitar 'sim' ou 'não'.")
