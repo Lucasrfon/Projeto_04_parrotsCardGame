@@ -46,10 +46,10 @@ h1 {
 .verso {
     transform: rotateY(180deg);
 }
-.carta:hover .verso {
+.vira {
     transform: rotateY(0deg);
 }
-.carta:hover .frente {
+.frente {
     transform: rotateY(-180deg);
 }
 .carta img {
